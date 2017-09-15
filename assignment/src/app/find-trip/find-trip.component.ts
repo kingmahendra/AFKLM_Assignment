@@ -38,17 +38,26 @@ export class FindTripComponent implements OnInit {
   }
 
   findTrip(values){
+    this.tripDetails = {};
     // Retrieve mock data
     this.dataService.getBooking('../../assets/mock/mock.json')
       .subscribe( data => {
          console.log(data);
          if (values.bookingCode === data.bookingCode) {
-           this.bookingId = data.bookingCode;
+           // this.bookingId = data.bookingCode;
            this.tripDetails = data;
+         }
+         else{
+           let error = {
+             statusCode: 404,
+             message:'Booking code does exist.'
+           }
+           this.tripDetails.error = error;
          }
       },
       error => {
-        console.error(error.statusCode, error.error)
+       // console.error(error.statusCode, error.error)
+        this.tripDetails.error = error;
       }
     );
 

@@ -35,7 +35,7 @@ export class MockDataService {
 
     const error = {
       statusCode: statusCode,
-      error: body.error
+      message: body.error
     };
     console.error(error);
     return Observable.throw(error);

@@ -56,8 +56,14 @@
   </div>
   
   <ng-template #tripInfo>
-    <div class="trip-details">
-      trip details goes here...
+    <div class="trip-error" *ngIf="tripDetails.error">
+      <p> Status Code : {{tripDetails.error.statusCode}} </p>
+      <p> Error Message: {{tripDetails.error.message}} </p> 
     </div>
+    <div class="trip-details" *ngIf="!tripDetails.error">
+      <span> Booking Code : {{tripDetails.bookingCode}} </span>
+      <h2> trip details goes here</h2>
+    </div>
+    <button (click)="tripDetails = null"> close </button>
   </ng-template>
 </div>

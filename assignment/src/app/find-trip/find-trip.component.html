@@ -2,7 +2,7 @@
   <div class="header">
      check-in     
   </div>
-  <div class="form-container">
+  <div class="form-container" *ngIf="!tripDetails; else tripInfo">
     <div class="form-header">
         <h1>Retrieve your <br> booking <br> <span>__</span> </h1>
     </div>
@@ -13,7 +13,7 @@
     <form [formGroup]="findTripForm" (ngSubmit)="findTrip(findTripForm.value)">
       <div class="form-input">
         <label> Booking Code <br>
-          <input type="text" formControlName="bookingCode" placeholder="Booking Code eg. 5SFDS5">
+          <input type="text" formControlName="bookingCode" placeholder="Booking Code eg. PZIGZ3">
         </label>
       </div> 
       <div *ngIf="findTripForm.controls['bookingCode'].touched">
@@ -29,9 +29,7 @@
            <div class="alert" *ngIf=" findTripForm.controls['bookingCode'].hasError('pattern')">
               Booking code should only contain number [2-9] or alphabets
            </div>
-      </div>
-      
-      
+      </div>      
       <div class="form-input">
         <label> Family Name <br>
           <input type="text" formControlName="familyName" placeholder="Family Name">
@@ -53,11 +51,13 @@
       </div>
       <div class="submit">
           <button [disabled]="!findTripForm.valid"> Retrieve Booking</button>
-      </div>
-          
-    </form>
-    
+      </div>          
+    </form>    
   </div>
-
-
+  
+  <ng-template #tripInfo>
+    <div class="trip-details">
+      trip details goes here...
+    </div>
+  </ng-template>
 </div>

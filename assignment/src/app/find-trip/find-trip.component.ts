@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MockDataService } from '../services/mock-data.service';
 
 @Component({
   selector: 'app-find-trip',
@@ -9,10 +10,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FindTripComponent implements OnInit {
 
   findTripForm: FormGroup;
+  tripDetails: any;
+  bookingId:string ='';
 
-  constructor( private formBuilder: FormBuilder) { }
+  constructor( private formBuilder: FormBuilder, private dataService:MockDataService) { }
 
   ngOnInit() {
+    this.tripDetails = null;
     this.createForm()
   }
 
@@ -34,7 +38,23 @@ export class FindTripComponent implements OnInit {
   }
 
   findTrip(values){
-    console.log(values);
+    // Retrieve mock data
+    this.dataService.getBooking('../../assets/mock/mock.json')
+      .subscribe( data => {
+         console.log(data);
+         if (values.bookingCode === data.bookingCode) {
+           this.bookingId = data.bookingCode;
+           this.tripDetails = data;
+         }
+      },
+      error => {
+        console.error(error.statusCode, error.error)
+      }
+    );
+
+    //reset the form
+    this.findTripForm.reset();
+
   }
 
 

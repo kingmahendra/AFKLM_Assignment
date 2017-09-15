@@ -1,0 +1,34 @@
+<div class="find-trip-container">
+  <div class="header">
+     check-in     
+  </div>
+  <div class="form-container">
+    <div class="form-header">
+        <h1>Retrieve your <br> booking <br> <span>__</span> </h1>
+    </div>
+    <p class="description">
+       You can find your booking by filling out your family name and the booking
+       code in your booking confirmation.
+    </p>
+    <form [formGroup]="findTripForm" (ngSubmit)="findTrip(findTripForm.value)">
+      <div class="form-input">
+        <label> Booking Code <br>
+          <input type="text" formControlName="bookingCode" placeholder="Booking Code eg. 5SFDS5">
+        </label>
+      </div> 
+      
+      <div class="form-input">
+        <label> Family Name <br>
+          <input type="text" formControlName="familyName" placeholder="Family Name">
+        </label> 
+      </div>
+      <div class="submit">
+          <button> Retrieve Booking</button>
+      </div>
+          
+    </form>
+    
+  </div>
+
+
+</div>

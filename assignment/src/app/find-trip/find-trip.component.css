@@ -1,0 +1,89 @@
+.find-trip-container {
+    width: 100%;
+    margin: 0;
+}
+
+.header {
+    width: 100%;
+    background-image: url('../../assets/img/af_pattern_bg.png');
+    color: white;
+    text-align: center;
+    padding:20px;
+    text-transform: uppercase;
+}
+
+.description {
+    color:#003145;
+}
+
+.form-input {
+    margin-top: 20px;
+}
+
+.form-input label{
+    color:#003145;
+    font-weight: bold;  
+}
+
+.form-input input[type="text"] {
+    margin-top:2px;
+    color:#003145;
+    padding: 5px;
+    width: 100%;
+}
+.form-input input[type="text"]:focus {
+    border:1px solid #003145;
+}    
+
+@media only screen and (min-width:426px){
+    .form-container {
+        max-width: 350px;
+        border:1px solid #767676;
+        margin:50px auto;
+        padding:20px;
+    }
+
+    .form-header h1 {
+        color:#003145;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    .submit {
+        margin: 20px auto;
+        max-width: 50%;
+    }
+    .submit button {
+        color: white;
+        background-color: #D40504;
+        padding: 10px 20px;
+        border: 0;
+     
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .form-container {
+        max-width: 100%;
+        margin:10px auto;
+        padding:20px;
+    } 
+    .form-header h1 {
+        color:#003145;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    .submit {
+        margin: 20px auto;
+        width: 100%;
+      
+    }
+    .submit button {
+        color: white;
+        width: 100%;
+        background-color: #D40504;
+        padding: 10px 20px;
+        border: 0;
+     
+    }
+}
+

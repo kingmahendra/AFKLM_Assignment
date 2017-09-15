@@ -16,14 +16,43 @@
           <input type="text" formControlName="bookingCode" placeholder="Booking Code eg. 5SFDS5">
         </label>
       </div> 
+      <div *ngIf="findTripForm.controls['bookingCode'].touched">
+          <div class="alert" *ngIf=" findTripForm.controls['bookingCode'].hasError('required')">
+              Booking code is required.
+           </div>
+           <div class="alert" *ngIf=" findTripForm.controls['bookingCode'].hasError('minlength')">
+              Booking code should be atleast 5 characters.
+           </div>
+           <div class="alert" *ngIf=" findTripForm.controls['bookingCode'].hasError('maxlength')">
+              Booking code should be at most 6 characters.
+           </div>
+           <div class="alert" *ngIf=" findTripForm.controls['bookingCode'].hasError('pattern')">
+              Booking code should only contain number [2-9] or alphabets
+           </div>
+      </div>
+      
       
       <div class="form-input">
         <label> Family Name <br>
           <input type="text" formControlName="familyName" placeholder="Family Name">
         </label> 
       </div>
+      <div *ngIf="findTripForm.controls['familyName'].touched">
+          <div class="alert" *ngIf=" findTripForm.controls['familyName'].hasError('required')">
+              Family name is required.
+           </div>
+           <div class="alert" *ngIf=" findTripForm.controls['familyName'].hasError('minlength')">
+              Family name should be atleast 2 characters.
+           </div>
+           <div class="alert" *ngIf=" findTripForm.controls['familyName'].hasError('maxlength')">
+              Family name should be at most 30 characters.
+           </div>
+           <div class="alert" *ngIf=" findTripForm.controls['familyName'].hasError('pattern')">
+              Family name should only contain alphabets
+           </div>
+      </div>
       <div class="submit">
-          <button> Retrieve Booking</button>
+          <button [disabled]="!findTripForm.valid"> Retrieve Booking</button>
       </div>
           
     </form>

@@ -18,8 +18,18 @@ export class FindTripComponent implements OnInit {
 
   createForm() {
     this.findTripForm = this.formBuilder.group({
-      bookingCode: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(6)])],
-      familyName: [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(30)])]
+      bookingCode: [null,
+         Validators.compose([Validators.required,
+         Validators.minLength(5),
+         Validators.maxLength(6),
+         Validators.pattern('[2-9,a-z,A-Z]*$')
+        ])],
+      familyName: [null,
+         Validators.compose([Validators.required,
+         Validators.minLength(2),
+         Validators.maxLength(30),
+         Validators.pattern('[a-z,A-Z]*$')
+        ])]
     });
   }
 

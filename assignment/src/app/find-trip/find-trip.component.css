@@ -32,8 +32,30 @@
     width: 100%;
 }
 .form-input input[type="text"]:focus {
-    border:1px solid #003145;
-}    
+    /* border:1px solid #003145; */
+    outline-color:#003145;
+    border:none;
+    
+} 
+.submit button:disabled {
+    opacity: 0.5;
+    cursor:not-allowed;
+}
+
+/* .form-input input[type="text"].ng-invalid.ng-touched {
+    border:1px solid #D40504;  
+   
+} */
+
+.alert {
+    color: #D40504;
+    margin-top:2px;
+    font-size: .9em;
+    width: 100%;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: 1s alertAnim forwards;
+}
 
 @media only screen and (min-width:426px){
     .form-container {
@@ -59,6 +81,7 @@
         border: 0;
      
     }
+   
 }
 
 @media only screen and (max-width: 425px) {
@@ -84,6 +107,17 @@
         padding: 10px 20px;
         border: 0;
      
+    }
+}
+
+@keyframes alertAnim {
+    from {
+        opacity:0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity:1;
+        transform: translateY(0);
     }
 }
 

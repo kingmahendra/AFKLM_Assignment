@@ -10,10 +10,10 @@
        You can find your booking by filling out your family name and the booking
        code in your booking confirmation.
     </p>
-    <form [formGroup]="findTripForm" (ngSubmit)="findTrip(findTripForm.value)">
+    <form [formGroup]="findTripForm" (ngSubmit)="findTrip(findTripForm.value)" novalidate>
       <div class="form-input">
         <label> Booking Code <br>
-          <input type="text" formControlName="bookingCode" placeholder="Booking Code eg. PZIGZ3">
+          <input type="text" id="bookingCode" formControlName="bookingCode" placeholder="Booking Code eg. PZIGZ3">
         </label>
       </div> 
       <div *ngIf="findTripForm.controls['bookingCode'].touched">

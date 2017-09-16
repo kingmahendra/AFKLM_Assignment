@@ -5,10 +5,14 @@ describe('assignment App', () => {
 
   beforeEach(() => {
     page = new AppPage();
+    page.navigateTo();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+  it('should display header text', () => {
+    expect(page.getHeaderText()).toEqual('CHECK-IN');
+  });
+
+  it('should display paragraph text', () => {
+    expect(page.getParagraphText()).toContain('You can find your booking');
   });
 });

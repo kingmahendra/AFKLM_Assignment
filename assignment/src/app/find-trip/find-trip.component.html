@@ -1,20 +1,19 @@
 <div class="find-trip-container">
-  <div class="header">
+  <div class="header" role="banner">
      check-in     
   </div>
   <div class="form-container" *ngIf="!tripDetails; else tripInfo">
-    <div class="form-header">
+    <div class="form-header" role="heading">
         <h1>Retrieve your <br> booking <br> <span>__</span> </h1>
     </div>
     <p class="description">
        You can find your booking by filling out your family name and the booking
        code in your booking confirmation.
     </p>
-    <form [formGroup]="findTripForm" (ngSubmit)="findTrip(findTripForm.value)" novalidate>
+    <form [formGroup]="findTripForm" (ngSubmit)="findTrip(findTripForm.value)" role="form" novalidate>
       <div class="form-input">
-        <label> Booking Code <br>
-          <input type="text" id="bookingCode" formControlName="bookingCode" placeholder="Booking Code eg. PZIGZ3">
-        </label>
+        <label for="bookingCode"> Booking Code </label>
+        <input type="text" id="bookingCode" formControlName="bookingCode" aria-required="true" placeholder="Booking Code eg. PZIGZ3">
       </div> 
       <div *ngIf="findTripForm.controls['bookingCode'].touched">
           <div class="alert" *ngIf=" findTripForm.controls['bookingCode'].hasError('required')">
@@ -29,11 +28,11 @@
            <div class="alert" *ngIf=" findTripForm.controls['bookingCode'].hasError('pattern')">
               Booking code should only contain number [2-9] or alphabets
            </div>
-      </div>      
+      </div> 
+
       <div class="form-input">
-        <label> Family Name <br>
-          <input type="text" formControlName="familyName" placeholder="Family Name">
-        </label> 
+        <label for="familyName"> Family Name </label>
+        <input id="familyName" type="text" formControlName="familyName" placeholder="Family Name" aria-required="true">
       </div>
       <div *ngIf="findTripForm.controls['familyName'].touched">
           <div class="alert" *ngIf=" findTripForm.controls['familyName'].hasError('required')">

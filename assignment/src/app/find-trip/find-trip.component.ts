@@ -42,7 +42,7 @@ export class FindTripComponent implements OnInit {
     // Retrieve mock data
     this.dataService.getBooking('../../assets/mock/mock.json')
       .subscribe( data => {
-         console.log(data);
+         // console.log(data);
          if (values.bookingCode === data.bookingCode) {
            // this.bookingId = data.bookingCode;
            this.tripDetails = data;

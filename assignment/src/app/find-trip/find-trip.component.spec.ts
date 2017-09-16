@@ -52,18 +52,66 @@ describe('FindTripComponent', () => {
     expect(component.findTripForm.valid).toBeTruthy();
   });
 
-  it('should contain required validation error, if field value is empty ', () => {
+  it('should set required validation error, if fields value is empty ', () => {
     component.findTripForm.controls['bookingCode'].setValue('');
     component.findTripForm.controls['familyName'].setValue('');
     expect(component.findTripForm.controls['bookingCode'].hasError('required')).toBeTruthy();
     expect(component.findTripForm.controls['familyName'].hasError('required')).toBeTruthy();
   });
 
-  it('should contain pattern validation error, if pattern not match ', () => {
+  it('should set minlength validation error, if fields value is less than minlegth ', () => {
+    component.findTripForm.controls['bookingCode'].setValue('ABC');
+    component.findTripForm.controls['familyName'].setValue('A');
+    expect(component.findTripForm.controls['bookingCode'].hasError('minlength')).toBeTruthy();
+    expect(component.findTripForm.controls['familyName'].hasError('minlength')).toBeTruthy();
+  });
+
+  it('should set maxlength validation error, if fields value is more than maxlegth ', () => {
+    component.findTripForm.controls['bookingCode'].setValue('ABCDEFG');
+    component.findTripForm.controls['familyName'].setValue('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+    expect(component.findTripForm.controls['bookingCode'].hasError('maxlength')).toBeTruthy();
+    expect(component.findTripForm.controls['familyName'].hasError('maxlength')).toBeTruthy();
+  });
+
+  it('should set pattern validation error, if pattern not match ', () => {
     component.findTripForm.controls['bookingCode'].setValue('23s122');
     component.findTripForm.controls['familyName'].setValue('12345');
     expect(component.findTripForm.controls['bookingCode'].hasError('pattern')).toBeTruthy();
     expect(component.findTripForm.controls['familyName'].hasError('pattern')).toBeTruthy();
   });
+
+  it('should make submit button disabled when incorrect data feed', () =>{
+    component.findTripForm.controls['bookingCode'].setValue('23s122');
+    component.findTripForm.controls['familyName'].setValue('12345');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('button').disabled).toBeTruthy();
+  });
+
+  it('should make submit button enabled when correct data feed', () =>{
+    component.findTripForm.controls['bookingCode'].setValue('ABCDE');
+    component.findTripForm.controls['familyName'].setValue('FOO');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('button').disabled).toBeFalsy();
+  })
+
+  it('should findTrip when submit button clicked', async(() => {
+    component.findTripForm.controls['bookingCode'].setValue('PZIGZ3');
+    component.findTripForm.controls['familyName'].setValue('FOO');
+    fixture.detectChanges();
+    
+    spyOn(mockDataService, 'getBooking').and.returnValue(Observable.of({bookingCode:'PZIGZ3'}));
+
+    const compiled = fixture.debugElement.nativeElement;
+    const button = compiled.querySelector('button');
+
+    button.click();
+    fixture.whenStable().then(()=> {
+      fixture.detectChanges();
+      expect(component.tripDetails.bookingCode).toEqual('PZIGZ3');
+    });
+    
+  }));
 
 });

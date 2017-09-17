@@ -32,14 +32,18 @@
     width: 100%;
 }
 .form-input input[type="text"]:focus {
-    /* border:1px solid #003145; */
-    outline-color:#003145;
-    border:none;
-    
-} 
+    border: 1px solid #003145; 
+    outline: 0;
+}
+
 .submit button:disabled {
     opacity: 0.5;
-    cursor:not-allowed;
+    cursor: not-allowed;
+}
+
+.submit button:hover:not(:disabled), .close button:hover {
+    border: 0;
+    text-decoration: underline;
 }
 
 .trip-details h2, .trip-error h2{
@@ -49,13 +53,6 @@
 span.label {
     font-weight: bold;
 }
-
-
-
-/* .form-input input[type="text"].ng-invalid.ng-touched {
-    border:1px solid #D40504;  
-   
-} */
 
 .alert {
     color: #D40504;

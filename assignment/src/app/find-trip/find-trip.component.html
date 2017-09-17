@@ -49,7 +49,7 @@
            </div>
       </div>
       <div class="submit">
-          <button [disabled]="!findTripForm.valid"> Retrieve Booking</button>
+          <button [disabled]="!findTripForm.valid" aria-label="Retrieve Booking"> Retrieve Booking</button>
       </div>          
     </form>    
   </div>
@@ -60,7 +60,7 @@
       <p> <span class="label"> Error Code : </span> {{tripDetails.error.statusCode}} </p>
       <p> <span class="label"> Error Message:</span> {{tripDetails.error.message}} </p>
       <div class="close"> 
-        <button (click)="tripDetails = null"> Close </button>
+        <button (click)="tripDetails = null" aria-label="Close"> Close </button>
       </div>  
     </div>
     <div class="trip-details" *ngIf="!tripDetails.error">
@@ -68,7 +68,7 @@
       <p> <span class="label"> Booking Code : </span> {{tripDetails.bookingCode}} </p>
       <p> <span class="label"> Passengers : </span> {{tripDetails.passengers?.title?.name}} {{tripDetails.passengers?.firstName}} {{tripDetails.passengers?.lastName}} </p>
       <div class="close"> 
-          <button (click)="tripDetails = null"> Check In </button>
+          <button (click)="tripDetails = null" aria-label="Check In"> Check In </button>
       </div> 
     </div>
     

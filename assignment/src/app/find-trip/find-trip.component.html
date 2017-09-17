@@ -56,13 +56,21 @@
   
   <ng-template #tripInfo>
     <div class="trip-error" *ngIf="tripDetails.error">
-      <p> Status Code : {{tripDetails.error.statusCode}} </p>
-      <p> Error Message: {{tripDetails.error.message}} </p> 
+      <h2> Error Details</h2><hr>
+      <p> <span class="label"> Error Code : </span> {{tripDetails.error.statusCode}} </p>
+      <p> <span class="label"> Error Message:</span> {{tripDetails.error.message}} </p>
+      <div class="close"> 
+        <button (click)="tripDetails = null"> Close </button>
+      </div>  
     </div>
     <div class="trip-details" *ngIf="!tripDetails.error">
-      <span> Booking Code : {{tripDetails.bookingCode}} </span>
-      <h2> trip details goes here</h2>
+      <h2> Booking Details</h2><hr>
+      <p> <span class="label"> Booking Code : </span> {{tripDetails.bookingCode}} </p>
+      <p> <span class="label"> Passengers : </span> {{tripDetails.passengers?.title?.name}} {{tripDetails.passengers?.firstName}} {{tripDetails.passengers?.lastName}} </p>
+      <div class="close"> 
+          <button (click)="tripDetails = null"> Check In </button>
+      </div> 
     </div>
-    <button (click)="tripDetails = null"> close </button>
+    
   </ng-template>
 </div>

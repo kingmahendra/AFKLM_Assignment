@@ -42,6 +42,16 @@
     cursor:not-allowed;
 }
 
+.trip-details h2, .trip-error h2{
+    text-align: center;
+    color:#003145;
+}
+span.label {
+    font-weight: bold;
+}
+
+
+
 /* .form-input input[type="text"].ng-invalid.ng-touched {
     border:1px solid #D40504;  
    
@@ -58,7 +68,7 @@
 }
 
 @media only screen and (min-width:426px){
-    .form-container {
+    .form-container, .trip-error, .trip-details {
         max-width: 350px;
         border:1px solid #767676;
         margin:50px auto;
@@ -70,22 +80,24 @@
         text-transform: uppercase;
         text-align: center;
     }
-    .submit {
+    .submit, .close {
         margin: 20px auto;
         max-width: 50%;
     }
-    .submit button {
+    .submit button, .close button {
         color: white;
         background-color: #D40504;
         padding: 10px 20px;
         border: 0;
+        cursor: pointer;
      
     }
-   
+ 
+           
 }
 
 @media only screen and (max-width: 425px) {
-    .form-container {
+    .form-container, .trip-error, .trip-details {
         max-width: 100%;
         margin:10px auto;
         padding:20px;
@@ -95,18 +107,18 @@
         text-transform: uppercase;
         text-align: center;
     }
-    .submit {
+    .submit, .close  {
         margin: 20px auto;
         width: 100%;
       
     }
-    .submit button {
+    .submit button, .close button {
         color: white;
         width: 100%;
         background-color: #D40504;
         padding: 10px 20px;
         border: 0;
-     
+        cursor: pointer;
     }
 }
 

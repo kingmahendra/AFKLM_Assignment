@@ -8,7 +8,7 @@ import { MockDataService } from './mock-data.service';
 describe('MockDataService', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpModule], 
+      imports: [HttpModule],
       providers: [
         MockDataService,
         { provide: XHRBackend, useClass: MockBackend }
@@ -20,11 +20,11 @@ describe('MockDataService', () => {
     expect(service).toBeTruthy();
   }));
 
-  describe('getBooking()', ()=> {
-   
+  describe('getBooking()', () => {
+
     it('should return an obsevable with mock data', inject([MockDataService, XHRBackend], (service, mockBackend) => {
       const mockResponse = {
-          bookingCode:'ABCDE',
+          bookingCode: 'ABCDE',
           familyName: 'FOO'
       };
 
@@ -37,8 +37,8 @@ describe('MockDataService', () => {
       service.getBooking('fakeUrl').subscribe( data => {
         expect(data.bookingCode).toEqual('ABCDE');
         expect(data.familyName).toEqual('FOO');
-      })
+      });
 
-    }))
-  })
+    }));
+  });
 });

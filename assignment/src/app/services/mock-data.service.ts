@@ -7,9 +7,18 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class MockDataService {
-  
+
   constructor(private http: Http) { }
 
+  /**
+   * Generic request method to do rest call using http
+   * it also handle any http request error.
+   * @param {String} url URI of the service
+   * @param {RequestMethod} method HTTP Request method GET, POST, PUT, DELETE etc
+   * @param {Object} [body] Payload if any to be passed along with request
+   * @returns Observable of JSON data
+   * @memberof MockDataService
+   */
   request(url: String, method: RequestMethod, body?: Object) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -27,8 +36,14 @@ export class MockDataService {
     return this.http.request(request)
       .map((res: Response) => res.json())
       .catch((res: Response) => this.onRequestError(res));
-  } 
+  }
 
+  /**
+   * Handles any http request error.
+   * @param {Response} res Error object
+   * @returns Observable of Error object
+   * @memberof MockDataService
+   */
   onRequestError(res: Response) {
     const statusCode = res.status;
     const body = res.json();
@@ -41,6 +56,12 @@ export class MockDataService {
     return Observable.throw(error);
   }
 
+  /**
+   * Get the booking data
+   * @param {string} url API url from where data to be fetched
+   * @returns Observable of JSON data
+   * @memberof MockDataService
+   */
   getBooking(url: string) {
     return this.request(url, RequestMethod.Get);
   }

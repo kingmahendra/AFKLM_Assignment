@@ -37,7 +37,6 @@ describe('FindTripComponent', () => {
   });
 
   it('should create a findTripForm model', () => {
-    //fixture.detectChanges();
     expect(component.findTripForm).toBeTruthy();
   });
 
@@ -80,7 +79,7 @@ describe('FindTripComponent', () => {
     expect(component.findTripForm.controls['familyName'].hasError('pattern')).toBeTruthy();
   });
 
-  it('should make submit button disabled when incorrect data feed', () =>{
+  it('should make submit button disabled when incorrect data feed', () => {
     component.findTripForm.controls['bookingCode'].setValue('23s122');
     component.findTripForm.controls['familyName'].setValue('12345');
     fixture.detectChanges();
@@ -88,30 +87,30 @@ describe('FindTripComponent', () => {
     expect(compiled.querySelector('button').disabled).toBeTruthy();
   });
 
-  it('should make submit button enabled when correct data feed', () =>{
+  it('should make submit button enabled when correct data feed', () => {
     component.findTripForm.controls['bookingCode'].setValue('ABCDE');
     component.findTripForm.controls['familyName'].setValue('FOO');
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('button').disabled).toBeFalsy();
-  })
+  });
 
   it('should findTrip when submit button clicked', async(() => {
     component.findTripForm.controls['bookingCode'].setValue('PZIGZ3');
     component.findTripForm.controls['familyName'].setValue('FOO');
     fixture.detectChanges();
-    
-    spyOn(mockDataService, 'getBooking').and.returnValue(Observable.of({bookingCode:'PZIGZ3'}));
+
+    spyOn(mockDataService, 'getBooking').and.returnValue(Observable.of({bookingCode: 'PZIGZ3'}));
 
     const compiled = fixture.debugElement.nativeElement;
     const button = compiled.querySelector('button');
 
     button.click();
-    fixture.whenStable().then(()=> {
+    fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(component.tripDetails.bookingCode).toEqual('PZIGZ3');
     });
-    
+
   }));
 
 });

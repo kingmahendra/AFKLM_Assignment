@@ -11,15 +11,19 @@ export class FindTripComponent implements OnInit {
 
   findTripForm: FormGroup;
   tripDetails: any;
-  bookingId:string ='';
 
-  constructor( private formBuilder: FormBuilder, private dataService:MockDataService) { }
+  constructor( private formBuilder: FormBuilder, private dataService: MockDataService) { }
 
   ngOnInit() {
     this.tripDetails = null;
-    this.createForm()
+    this.createForm();
   }
 
+  /**
+   * Create and initialize the form model with required
+   * validation.
+   * @memberof FindTripComponent
+   */
   createForm() {
     this.findTripForm = this.formBuilder.group({
       bookingCode: [null,
@@ -37,34 +41,31 @@ export class FindTripComponent implements OnInit {
     });
   }
 
-  findTrip(values){
+  /**
+   * Retrive the Booking details and handle error if any
+   * @param {any} values
+   * @memberof FindTripComponent
+   */
+  findTrip(values) {
     this.tripDetails = {};
     // Retrieve mock data
     this.dataService.getBooking('../../assets/mock/mock.json')
       .subscribe( data => {
-         // console.log(data);
-         if (values.bookingCode === data.bookingCode) {
-           // this.bookingId = data.bookingCode;
-           this.tripDetails = data;
-         }
-         else{
-           let error = {
+        if (values.bookingCode === data.bookingCode) {
+          this.tripDetails = data;
+        }else {
+          const error = {
              statusCode: 404,
-             message:'Booking code does exist.'
-           }
-           this.tripDetails.error = error;
-         }
+             message: 'Booking code does exist.'
+          };
+          this.tripDetails.error = error;
+        }
       },
       error => {
-       // console.error(error.statusCode, error.error)
         this.tripDetails.error = error;
       }
     );
-
-    //reset the form
+    // reset the form
     this.findTripForm.reset();
-
   }
-
-
 }

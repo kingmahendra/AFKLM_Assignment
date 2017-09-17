@@ -50,6 +50,11 @@
     text-align: center;
     color:#003145;
 }
+
+div.row{
+    padding: 5px 0;
+    border-bottom: 1px solid #767676;
+}
 span.label {
     font-weight: bold;
 }

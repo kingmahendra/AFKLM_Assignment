@@ -51,7 +51,7 @@ export class FindTripComponent implements OnInit {
     // Retrieve mock data
     this.dataService.getBooking('../../assets/mock/mock.json')
       .subscribe( data => {
-        if (values.bookingCode === data.bookingCode) {
+        if (values.bookingCode.toUpperCase() === data.bookingCode) {
           this.tripDetails = data;
         }else {
           const error = {

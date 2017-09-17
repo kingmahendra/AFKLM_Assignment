@@ -65,8 +65,15 @@
     </div>
     <div class="trip-details" *ngIf="!tripDetails.error" aria-label="Booking Details">
       <h2 tabindex="0"> Booking Details</h2><hr>
-      <p tabindex="0"> <span class="label"> Booking Code : </span> {{tripDetails.bookingCode}} </p>
-      <p tabindex="0"> <span class="label"> Passengers : </span> {{tripDetails.passengers?.title?.name}} {{tripDetails.passengers?.firstName}} {{tripDetails.passengers?.lastName}} </p>
+      <div class="row" tabindex="0"> <span class="label"> Booking Code : </span> {{tripDetails.bookingCode}} </div>
+      <div class="row" tabindex="0"> <span class="label"> Passengers : </span> {{tripDetails.passengers?.title?.name}} {{tripDetails.passengers?.firstName}} {{tripDetails.passengers?.lastName}} </div>
+      <div class="row" tabindex="0"> <span class="label"> Type : </span> {{tripDetails.itinerary?.type}} </div>
+      <div class="row" tabindex="0"> <span class="label"> Origin : </span> 
+        {{tripDetails.itinerary?.connections[0]?.origin?.name}} ( {{tripDetails.itinerary?.connections[0]?.origin?.IATACode}} )
+      </div>
+      <div class="row" tabindex="0"> <span class="label"> Destination : </span> 
+        {{tripDetails.itinerary?.connections[0]?.destination?.name}} ( {{tripDetails.itinerary?.connections[0]?.destination?.IATACode}} )
+       </div>
       <div class="close"> 
           <button  tabindex="0" (click)="tripDetails = null" aria-label="Check In"> Check In </button>
       </div> 

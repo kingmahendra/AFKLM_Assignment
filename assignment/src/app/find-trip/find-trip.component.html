@@ -1,19 +1,19 @@
 <div class="find-trip-container">
-  <div class="header" role="banner">
+  <div class="header" role="banner" tabindex="0" aria-label="check in">
      check-in     
   </div>
   <div class="form-container" *ngIf="!tripDetails; else tripInfo">
-    <div class="form-header" role="heading">
+    <div class="form-header" role="heading" tabindex="0" aria-label="Retrieve your booking">
         <h1>Retrieve your <br> booking <br> <span>__</span> </h1>
     </div>
-    <p class="description">
+    <p class="description" tabindex="0">
        You can find your booking by filling out your family name and the booking
        code in your booking confirmation.
     </p>
     <form [formGroup]="findTripForm" (ngSubmit)="findTrip(findTripForm.value)" role="form" novalidate>
       <div class="form-input">
         <label for="bookingCode"> Booking Code </label>
-        <input type="text" id="bookingCode" formControlName="bookingCode" aria-required="true" placeholder="Booking Code eg. PZIGZ3">
+        <input type="text" id="bookingCode" formControlName="bookingCode" aria-required="true" tabindex="0">
       </div> 
       <div *ngIf="findTripForm.controls['bookingCode'].touched">
           <div class="alert" *ngIf=" findTripForm.controls['bookingCode'].hasError('required')">
@@ -32,10 +32,10 @@
 
       <div class="form-input">
         <label for="familyName"> Family Name </label>
-        <input id="familyName" type="text" formControlName="familyName" placeholder="Family Name" aria-required="true">
+        <input id="familyName" type="text" formControlName="familyName"  aria-required="true" tabindex="0">
       </div>
       <div *ngIf="findTripForm.controls['familyName'].touched">
-          <div class="alert" *ngIf=" findTripForm.controls['familyName'].hasError('required')">
+          <div class="alert" *ngIf=" findTripForm.controls['familyName'].hasError('required')" >
               Family name is required.
            </div>
            <div class="alert" *ngIf=" findTripForm.controls['familyName'].hasError('minlength')">
@@ -49,26 +49,26 @@
            </div>
       </div>
       <div class="submit">
-          <button [disabled]="!findTripForm.valid" aria-label="Retrieve Booking"> Retrieve Booking</button>
+          <button [disabled]="!findTripForm.valid" aria-label="Retrieve Booking" tabindex="0"> Retrieve Booking</button>
       </div>          
     </form>    
   </div>
   
   <ng-template #tripInfo>
     <div class="trip-error" *ngIf="tripDetails.error">
-      <h2> Error Details</h2><hr>
-      <p> <span class="label"> Error Code : </span> {{tripDetails.error.statusCode}} </p>
-      <p> <span class="label"> Error Message:</span> {{tripDetails.error.message}} </p>
+      <h2 tabindex="0" aria-label="Error Details"> Error Details</h2><hr>
+      <p  tabindex="0"> <span class="label"> Error Code : </span> {{tripDetails.error.statusCode}} </p>
+      <p  tabindex="0"> <span class="label"> Error Message:</span> {{tripDetails.error.message}} </p>
       <div class="close"> 
-        <button (click)="tripDetails = null" aria-label="Close"> Close </button>
+        <button  tabindex="0" (click)="tripDetails = null" aria-label="Close"> Close </button>
       </div>  
     </div>
-    <div class="trip-details" *ngIf="!tripDetails.error">
-      <h2> Booking Details</h2><hr>
-      <p> <span class="label"> Booking Code : </span> {{tripDetails.bookingCode}} </p>
-      <p> <span class="label"> Passengers : </span> {{tripDetails.passengers?.title?.name}} {{tripDetails.passengers?.firstName}} {{tripDetails.passengers?.lastName}} </p>
+    <div class="trip-details" *ngIf="!tripDetails.error" aria-label="Booking Details">
+      <h2 tabindex="0"> Booking Details</h2><hr>
+      <p tabindex="0"> <span class="label"> Booking Code : </span> {{tripDetails.bookingCode}} </p>
+      <p tabindex="0"> <span class="label"> Passengers : </span> {{tripDetails.passengers?.title?.name}} {{tripDetails.passengers?.firstName}} {{tripDetails.passengers?.lastName}} </p>
       <div class="close"> 
-          <button (click)="tripDetails = null" aria-label="Check In"> Check In </button>
+          <button  tabindex="0" (click)="tripDetails = null" aria-label="Check In"> Check In </button>
       </div> 
     </div>
     

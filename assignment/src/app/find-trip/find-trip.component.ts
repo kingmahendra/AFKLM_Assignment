@@ -56,7 +56,7 @@ export class FindTripComponent implements OnInit {
         }else {
           const error = {
              statusCode: 404,
-             message: 'Booking code does exist.'
+             message: 'Booking code does not exist.'
           };
           this.tripDetails.error = error;
         }

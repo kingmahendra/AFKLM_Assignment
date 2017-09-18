@@ -12,6 +12,8 @@ I have created a separate MockDataService class to retrieve mock booking data an
 
 I used jasmine with Karma for  unit test and jasmine and protractor for end to end (e2e) test. I have added unit test specs  for find-trip component, MockDataService class and app component. I have also added one spec file for end to end test.
 
+I have used HTML5 accessibility standards, tab index and ARIA attributes to make form fully accessible to people with disabilities.
+
 I used tslint for TypeScript linting.  I have also added some documentation to the method in find-trip component.
 
 With help of Webpack module bundler this project builds an optimized and efficient find-trip component.

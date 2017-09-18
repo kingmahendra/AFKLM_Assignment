@@ -113,4 +113,23 @@ describe('FindTripComponent', () => {
 
   }));
 
+  it('should give error when booking code not matched', async(() => {
+    component.findTripForm.controls['bookingCode'].setValue('AAAAA');
+    component.findTripForm.controls['familyName'].setValue('FOO');
+    fixture.detectChanges();
+
+    spyOn(mockDataService, 'getBooking').and.returnValue(Observable.of({bookingCode: 'PZIGZ3'}));
+
+    const compiled = fixture.debugElement.nativeElement;
+    const button = compiled.querySelector('button');
+
+    button.click();
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(component.tripDetails.error.statusCode).toEqual(404);
+      expect(component.tripDetails.error.message).toEqual('Booking code does not exist.');
+    });
+
+  }));
+
 });

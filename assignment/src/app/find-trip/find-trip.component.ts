@@ -9,8 +9,8 @@ import { MockDataService } from '../services/mock-data.service';
 })
 export class FindTripComponent implements OnInit {
 
-  findTripForm: FormGroup;
-  tripDetails: any;
+  public findTripForm: FormGroup;
+  public tripDetails: any;
 
   constructor( private formBuilder: FormBuilder, private dataService: MockDataService) { }
 
@@ -24,7 +24,7 @@ export class FindTripComponent implements OnInit {
    * validation.
    * @memberof FindTripComponent
    */
-  createForm() {
+  createForm(): void {
     this.findTripForm = this.formBuilder.group({
       bookingCode: [null,
          Validators.compose([Validators.required,
@@ -46,7 +46,7 @@ export class FindTripComponent implements OnInit {
    * @param {any} values
    * @memberof FindTripComponent
    */
-  findTrip(values) {
+  findTrip(values): void {
     this.tripDetails = {};
     // Retrieve mock data
     this.dataService.getBooking('../../assets/mock/mock.json')
